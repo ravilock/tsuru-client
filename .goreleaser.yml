@@ -53,6 +53,7 @@ archives:
     - misc/zsh-completion
 
 release:
+  replace_existing_artifacts: true
   extra_files:
     - glob: dist/metadata.json
     - glob: dist/CHANGELOG.md
