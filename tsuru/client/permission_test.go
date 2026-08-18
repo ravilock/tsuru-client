@@ -141,12 +141,14 @@ func (s *S) TestRoleInfoRun(c *check.C) {
 	result := `
     {"name": "role1",  "context": "a", "description":"my description", "scheme_names": ["app", "app.update"], "dynamic_scheme_names": ["service-action.acl", "service-action.acl.rules.sync"]}
 `
-	expected := `+-------+---------+-------------+-------------------------------+----------------+
-| Name  | Context | Permissions | Dynamic Permissions           | Description    |
-+-------+---------+-------------+-------------------------------+----------------+
-| role1 | a       | app         | service-action.acl            | my description |
-|       |         | app.update  | service-action.acl.rules.sync |                |
-+-------+---------+-------------+-------------------------------+----------------+
+	expected := `+-------+---------+-------------------------------+----------------+
+| Name  | Context | Permissions                   | Description    |
++-------+---------+-------------------------------+----------------+
+| role1 | a       | app                           | my description |
+|       |         | app.update                    |                |
+|       |         | service-action.acl            |                |
+|       |         | service-action.acl.rules.sync |                |
++-------+---------+-------------------------------+----------------+
 `
 	context := cmd.Context{
 		Args:   []string{"role1"},
