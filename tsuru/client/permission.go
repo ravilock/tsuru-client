@@ -385,10 +385,10 @@ func (c *RoleAssign) Run(context *cmd.Context) error {
 	}
 	params := url.Values{}
 	var suffix, version string
-	if strings.HasPrefix(roleTarget, "group:") {
+	if groupName, ok := strings.CutPrefix(roleTarget, "group:"); ok {
 		suffix = "group"
 		version = "1.9"
-		params.Set("group_name", strings.TrimPrefix(roleTarget, "group:"))
+		params.Set("group_name", groupName)
 	} else if strings.Contains(roleTarget, "@") {
 		suffix = "user"
 		version = "1.0"
