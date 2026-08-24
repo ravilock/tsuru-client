@@ -341,7 +341,7 @@
   },
   "role-dissociate": {
     "usage": "tsuru role-dissociate <role-name> <user-email>|<token-id> [<context-value>]",
-    "desc": "Dissociate an existing role from a user or token for some context value.\n\nMinimum # of arguments: 2\n"
+    "desc": "Dissociate an existing role from a user, token or group for some context value.\n\nMinimum # of arguments: 2\n"
   },
   "service-instance-remove": {
     "usage": "tsuru service-instance-remove <service-name> <service-instance-name> [-f/--force] [--ignore-errors] [-y/--assume-yes]",

@@ -422,7 +422,7 @@ func (c *RoleDissociate) Info() *cmd.Info {
 	return &cmd.Info{
 		Name:    "role-dissociate",
 		Usage:   "<role-name> <user-email>|<token-id>|group:<group-id> [<context-value>]",
-		Desc:    `Dissociate an existing role from a user or token for some context value.`,
+		Desc:    `Dissociate an existing role from a user, token or group for some context value.`,
 		MinArgs: 2,
 	}
 }
