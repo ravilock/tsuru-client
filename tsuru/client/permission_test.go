@@ -289,6 +289,29 @@ func (s *S) TestRoleDissociateRunWithToken(c *check.C) {
 	c.Assert(stdout.String(), check.Equals, "Role successfully dissociated!\n")
 }
 
+func (s *S) TestRoleDissociateRunWithGroup(c *check.C) {
+	var stdout, stderr bytes.Buffer
+	context := cmd.Context{
+		Args:   []string{"myrole", "group:grp1", "myapp"},
+		Stdout: &stdout,
+		Stderr: &stderr,
+	}
+	trans := &cmdtest.ConditionalTransport{
+		Transport: cmdtest.Transport{Message: string(""), Status: http.StatusCreated},
+		CondFunc: func(req *http.Request) bool {
+			c.Assert(req.URL.Path, check.Equals, "/1.9/roles/myrole/group/grp1")
+			c.Assert(req.Method, check.Equals, http.MethodDelete)
+			c.Assert(req.FormValue("context"), check.Equals, "myapp")
+			return true
+		},
+	}
+	s.setupFakeTransport(trans)
+	command := RoleDissociate{}
+	err := command.Run(&context)
+	c.Assert(err, check.IsNil)
+	c.Assert(stdout.String(), check.Equals, "Role successfully dissociated!\n")
+}
+
 func (s *S) TestRolePermissionAddInfo(c *check.C) {
 	c.Assert((&RolePermissionAdd{}).Info(), check.NotNil)
 }
