@@ -92,7 +92,7 @@ func TestServiceManifestGet(t *testing.T) {
 		flags          []string
 		contains       []string
 	}{
-		{"human", manifestFixture, nil, []string{"Service: mysql", "Enabled: true", "Strict actions: true", "Legacy compatibility: false", "METHOD", "PATH", "ACTION", "POST", "/rules/{ruleId}/sync", "rules.sync"}},
+		{"human", manifestFixture, nil, []string{"Service: mysql", "Enabled: true", "Strict actions: true", "Legacy compatibility: false", "Method", "Path", "Action", "POST", "/rules/{ruleId}/sync", "rules.sync"}},
 		{"absent", "null", nil, []string{"No manifest configured."}},
 		{"empty operations", `{"enabled":false,"operations":[]}`, nil, []string{"Enabled: false", "No operations configured."}},
 		{"json", manifestFixture, []string{"--json"}, []string{"\n  \"enabled\": true", `"strict_actions": true`, `"legacy_compat": false`}},
